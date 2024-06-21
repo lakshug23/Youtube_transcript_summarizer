@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Transcript</title>
+    <style>
+        body {
+            background-size: 100% 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color:  #ffcc00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #000;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .h-primary {
+            font-size: 40px;
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+        .form {
+            font-size: 20px;
+        }
+        input[type="text"] {
+            width: 400px;
+            height: 40px;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid  #ffcc00;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .bn {
+            background-color: #e6b800;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .bn:hover {
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+<body  background = "11.jpg">
+    <div class="container">
+        <h1 class="h-primary">YOUTUBE TRANSCRIPT</h1>
+        <div class="form">
+            <form action="/transcribe" method="post">
+                <label for="youtube_url">Enter the link:</label><br>
+                <input style="color:white;" type="text" id="youtube_url" name="youtube_url" placeholder="Enter the YouTube URL link here"><br>
+                <button type="submit" class="bn">GO</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

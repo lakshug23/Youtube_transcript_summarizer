@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcript Output</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #222;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .h-primary {
+            font-size: 36px;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        .text {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ffcc00;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            resize: none;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+        .bn {
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+        }
+        .bn:hover {
+            background-color: #e6b800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="h-primary">Transcript Output</h1>
+        <div class="text">
+            <textarea id="transcript" rows="20" cols="70">{{ transcript_text }}</textarea>
+        </div>
+        <div class="buttons">
+            <a href="#"><button class="bn" onclick="getSummary()">Summary</button></a>
+            <a href="#"><button class="bn" onclick="getKeywords()">Keywords</button></a>
+            <button class="bn" onclick="downloadTranscript()">Download</button>
+        </div>
+    </div>
+    <script>
+        function downloadTranscript() {
+            const transcriptText = document.getElementById('transcript').value;
+            const blob = new Blob([transcriptText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'transcript.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function getKeywords() {
+            const summaryText = document.getElementById('transcript').value;
+            fetch('/keywords', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ summary_text: summaryText }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Keywords: ' + data.keywords);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        function getSummary() {
+            const summaryText = document.getElementById('transcript').value;
+            fetch('/summarytext', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ summary_text: summaryText }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Summary for the transcript will be downloaded successfully. Click OK');
+                const blob = new Blob([data.summary], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'summary.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+
+    </script>
+</body>
+</html>

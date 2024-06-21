@@ -1,0 +1,13 @@
+hi I am there from court Academy and today we can talk about a fundamental
+concept in Computer Science loops life like programming is forever feeding
+routines in cyber cafe everyday we wake up in brush our teeth we don't just
+brush one to use another first order in programming language the other day I
+write some instructions for fasting a cupcake and put them in Hindi function for
+kids so that I can use them whatever I needed say anything about ok no problem I
+can just call my function three times right but what if I needed to Fast Five
+and 1000 execute the same code multiple Times there are different types of loops
+and each programming language Syntax but always have one thing in common
+stopping condition this condition is checked every round and the Looper continue
+to run into the condition is reached if I go was the first for cupcakes the loop
+stopping condition with specified to continue the process for times giving us
+for free stop on a few easy to read lines of code which is super sweet
